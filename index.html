@@ -1,13 +1,344 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이소현 | 서비스 기획·운영 포트폴리오</title>
+<meta name="description" content="서비스 기획·운영 이소현의 포트폴리오. 헬스케어 앱 운영 성과와 기획·리서치·데이터 프로젝트.">
+<meta property="og:title" content="이소현 | 서비스 기획·운영 포트폴리오">
+<meta property="og:description" content="헬스케어 앱 운영 성과와 기획·리서치·데이터 프로젝트">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314283A'/%3E%3Cpath d='M8 21 L13 14 L18 18 L24 10' stroke='%233FA371' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --paper: #ffffff;
+    --panel: #f2f6f3;
+    --ink: #14283a;
+    --muted: #5b6b78;
+    --line: #dce3e8;
+    --leaf: #2e7d57;
+    --leaf-soft: #e3efe7;
+    --date-col: 9.5rem;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    font-feature-settings: "tnum" 1;
+  }
+  a { color: inherit; text-decoration-color: color-mix(in srgb, var(--leaf) 55%, transparent); text-underline-offset: 0.22em; text-decoration-thickness: 1.5px; }
+  a:hover { color: var(--leaf); }
+  a:focus-visible { outline: 2px solid var(--leaf); outline-offset: 3px; border-radius: 2px; }
 
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+  /* header */
+  .top { padding: 72px 0 40px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+  .name { font-size: clamp(40px, 6vw, 56px); font-weight: 750; letter-spacing: -0.035em; line-height: 1.1; margin: 0; }
+  .role { margin: 10px 0 0; font-size: 19px; color: var(--muted); font-weight: 500; }
+  .contact { display: flex; gap: 20px; font-size: 15px; padding-top: 10px; }
+  .intro { max-width: 34em; font-size: 19px; line-height: 1.75; margin: 0 0 48px; }
+
+  /* hero chart */
+  .trend { background: var(--panel); border-radius: 14px; padding: 28px 28px 22px; margin-bottom: 18px; }
+  .trend h2 { font-size: 16px; font-weight: 650; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .trend .sub { font-size: 14px; color: var(--muted); margin: 0 0 8px; }
+  .trend svg { display: block; width: 100%; height: auto; }
+  .trend .note { font-size: 13px; color: var(--muted); margin: 6px 0 0; line-height: 1.6; }
+  .caption { max-width: 34em; margin: 0 0 88px; color: var(--ink); }
+
+  .line-path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s cubic-bezier(.6,.05,.25,1) .25s forwards; }
+  .pt, .pt-label { opacity: 0; animation: show .4s ease forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes show { to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .line-path { animation: none; stroke-dashoffset: 0; }
+    .pt, .pt-label { animation: none; opacity: 1; }
+  }
+
+  /* sections */
+  section { margin-bottom: 88px; }
+  section > h2 { font-size: 26px; font-weight: 720; letter-spacing: -0.025em; margin: 0 0 28px; }
+  .row { display: grid; grid-template-columns: var(--date-col) 1fr; gap: 8px 32px; padding: 26px 0; border-top: 1px solid var(--line); }
+  .row:last-child { border-bottom: 1px solid var(--line); }
+  .when { color: var(--muted); font-size: 15px; padding-top: 3px; white-space: nowrap; }
+  .row h3 { font-size: 20px; font-weight: 680; letter-spacing: -0.02em; margin: 0; line-height: 1.45; }
+  .row .org { color: var(--muted); font-size: 15px; margin: 2px 0 12px; }
+  .row p { margin: 0 0 12px; max-width: 38em; }
+  .row ul { margin: 0; padding-left: 1.1em; max-width: 38em; }
+  .row li { margin-bottom: 4px; }
+
+  /* results */
+  .results { margin: 22px 0 18px; padding: 0; list-style: none; max-width: none; }
+  .results li { display: grid; grid-template-columns: 5.2rem 1fr; gap: 16px; padding: 14px 0; border-top: 1px dashed var(--line); margin: 0; }
+  .results li:first-child { border-top: 0; padding-top: 4px; }
+  .results .num { font-size: 22px; font-weight: 720; color: var(--leaf); letter-spacing: -0.02em; line-height: 1.35; }
+  .results strong { font-weight: 650; }
+  .results .what { display: block; }
+  .results .how { display: block; color: var(--muted); font-size: 15px; margin-top: 2px; }
+  .more { font-size: 15px; }
+
+  /* projects */
+  .proj h3 a { text-decoration: none; }
+  .proj h3 a:hover { text-decoration: underline; }
+  .proj .desc { margin: 6px 0 8px; max-width: 38em; }
+  .proj .meta { font-size: 14px; color: var(--muted); margin: 0; }
+  .kind { display: inline-block; font-size: 13px; font-weight: 600; color: var(--leaf); background: var(--leaf-soft); border-radius: 5px; padding: 1px 8px; margin-right: 8px; }
+
+  /* basics */
+  .basics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; border-top: 1px solid var(--line); padding-top: 28px; }
+  .basics h3 { font-size: 16px; font-weight: 680; margin: 0 0 12px; }
+  .basics ul { list-style: none; margin: 0; padding: 0; font-size: 15.5px; }
+  .basics li { margin-bottom: 12px; line-height: 1.55; }
+  .basics .dim { display: block; color: var(--muted); font-size: 14px; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 56px; color: var(--muted); font-size: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 20px; }
+    .top { padding-top: 48px; }
+    .intro { font-size: 17px; }
+    .trend { padding: 20px 16px 16px; border-radius: 12px; }
+    .trend .lbl-val { font-size: 27px; }
+    .trend .lbl-month { font-size: 23px; }
+    .trend .lbl-event { font-size: 20px; }
+    .row { grid-template-columns: 1fr; padding: 22px 0; }
+    .when { padding-top: 0; }
+    .results li { grid-template-columns: 4.4rem 1fr; gap: 12px; }
+    .results .num { font-size: 19px; }
+    .basics { grid-template-columns: 1fr; gap: 28px; }
+    section { margin-bottom: 64px; }
+    .caption { margin-bottom: 64px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1 class="name">이소현</h1>
+      <p class="role">서비스 기획·운영</p>
+    </div>
+    <nav class="contact" aria-label="연락처">
+      <a href="mailto:isso213@snu.ac.kr">이메일</a>
+      <a href="https://www.linkedin.com/in/isobel0lee" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </header>
+
+  <p class="intro">데이터로 문제를 찾고, 정해진 예산과 일정 안에서 실행한 뒤, 결과를 숫자로 확인합니다. 지금은 서울대학교 건강문화사업단에서 교직원 714명이 쓰는 건강관리 앱 '스누헬싱유'를 기획하고 운영합니다.</p>
+
+  <figure class="trend" aria-labelledby="trend-title" style="margin-left:0;margin-right:0;margin-top:0">
+    <h2 id="trend-title">스누헬싱유 월간 실천 사용자</h2>
+    <p class="sub">2026년 6월 – 10월, 단위 명</p>
+    <svg viewBox="0 0 640 274" role="img" aria-label="월간 실천 사용자: 6월 362명, 7월 297명, 8월 263명, 9월 포인트 이벤트 후 298명, 10월 291명">
+      <rect x="375" y="18" width="150" height="212" rx="6" fill="#d3e6da"/>
+      <text class="lbl-event" x="450" y="40" text-anchor="middle" font-size="13" font-weight="600" fill="#2e7d57">포인트 이벤트</text>
+      <line x1="40" x2="600" y1="230" y2="230" stroke="#c9d3da" stroke-width="1"/>
+      <path class="line-path" pathLength="1" d="M60 63 L190 147 L320 190 L450 145 L580 154" fill="none" stroke="#14283a" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <g fill="#ffffff" stroke="#14283a" stroke-width="2.5">
+        <circle class="pt" style="animation-delay:.3s" cx="60" cy="63" r="5"/>
+        <circle class="pt" style="animation-delay:.6s" cx="190" cy="147" r="5"/>
+        <circle class="pt" style="animation-delay:.9s" cx="320" cy="190" r="5"/>
+        <circle class="pt" style="animation-delay:1.25s; fill:#2e7d57; stroke:#2e7d57" cx="450" cy="145" r="6"/>
+        <circle class="pt" style="animation-delay:1.5s" cx="580" cy="154" r="5"/>
+      </g>
+      <g class="lbl-val" font-size="17" font-weight="650" fill="#14283a" text-anchor="middle">
+        <text class="pt-label" style="animation-delay:.35s" x="60" y="46">362</text>
+        <text class="pt-label" style="animation-delay:.65s" x="190" y="130">297</text>
+        <text class="pt-label" style="animation-delay:.95s" x="320" y="220">263</text>
+        <text class="pt-label" style="animation-delay:1.3s; fill:#2e7d57" x="450" y="126">298</text>
+        <text class="pt-label" style="animation-delay:1.55s" x="580" y="137">291</text>
+      </g>
+      <g class="lbl-month" font-size="14" fill="#5b6b78" text-anchor="middle">
+        <text x="60" y="260">6월</text>
+        <text x="190" y="260">7월</text>
+        <text x="320" y="260">8월</text>
+        <text x="450" y="260">9월</text>
+        <text x="580" y="260">10월</text>
+      </g>
+    </svg>
+    <p class="note">실천 사용자는 개인 미션, 주간계획 기록, 학습하기 중 하나 이상을 한 회원입니다. 앱에 접속만 한 회원은 세지 않습니다.</p>
+  </figure>
+  <p class="caption">석 달째 줄던 실천 사용자가 9월 포인트 이벤트 뒤 13% 늘었고, 이벤트가 끝난 10월에도 같은 수준을 유지했습니다. 이벤트는 직접 기획해 제안하고 시행했습니다.</p>
+
+  <section aria-labelledby="exp">
+    <h2 id="exp">경력</h2>
+
+    <div class="row">
+      <div class="when">2026.04 – 현재</div>
+      <div>
+        <h3>서울대학교 건강문화사업단</h3>
+        <p class="org">연구원, 서비스 기획·운영</p>
+        <p>교직원 대상 건강관리 앱 '스누헬싱유'의 기획, 운영, 고도화를 맡고 있습니다. 포인트 보상 상품과 공급사 계약, 무인 냉장고 픽업 운영, VOC 대응, 외주 개발사와의 구현 범위·일정 조율이 주요 업무입니다.</p>
+        <ul class="results">
+          <li>
+            <span class="num">+13%</span>
+            <span><span class="what"><strong>포인트 이벤트 기획·시행</strong>으로 월간 실천 사용자 263명 → 298명</span>
+            <span class="how">일평균은 180명 → 207명(+15%). 쓰이지 않던 월 예산을 보상으로 돌려 집행률을 43.6%에서 100%로 올렸습니다.</span></span>
+          </li>
+          <li>
+            <span class="num">+73%</span>
+            <span><span class="what"><strong>컵과일 상품 구성 변경 제안</strong>으로 픽업일당 주문 21.4개 → 37.1개</span>
+            <span class="how">새로 들인 조생귤이 6주 만에 판매 2위가 됐고, 컵과일을 처음 산 회원이 67명 생겼습니다.</span></span>
+          </li>
+          <li>
+            <span class="num">3.7배</span>
+            <span><span class="what"><strong>사용자 모집 참여</strong>, 7주 만에 회원 185명 → 693명</span>
+            <span class="how">현재 회원의 87%가 초기 건강 설문까지 마쳤습니다.</span></span>
+          </li>
+          <li>
+            <span class="num">85%</span>
+            <span><span class="what"><strong>판매처 8곳 픽업 운영 참여</strong>, 픽업한 회원 중 다시 주문한 비율</span>
+            <span class="how">무인 냉장고 7곳을 포함한 판매처에서 픽업 2,100건이 완료됐습니다. 상품은 11종입니다.</span></span>
+          </li>
+        </ul>
+        <p>접속 로그가 남지 않는 환경이라 미션 수행 기준으로 활성 지표를 새로 정의했고, 운영 DB에서 SQL로 지표를 뽑아 관리자 페이지 수치와 맞춰 봤습니다. 운영 매뉴얼을 정리해 신규 연구원 온보딩에도 쓰고 있습니다.</p>
+        <p class="more"><a href="https://sugary-heat-080.notion.site/3db1399caa8e80d79a53cae442e328a2" target="_blank" rel="noopener">스누헬싱유 자세히 보기</a></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">2024.10 – 2025.04</div>
+      <div>
+        <h3>서울대학교 원예작물 유전체학 연구실</h3>
+        <p class="org">연구원, 생물정보 분석</p>
+        <p>RNA-Seq 데이터를 raw read부터 분석하는 파이프라인을 Perl·Python 스크립트로 만들고, R DESeq2로 차등발현유전자를 분석했습니다. PCA와 heatmap으로 결과를 시각화했습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="proj">
+    <h2 id="proj">프로젝트</h2>
+
+    <div class="row proj">
+      <div class="when">2026</div>
+      <div>
+        <h3><a href="https://sugary-heat-080.notion.site/3db1399caa8e805eade2c88d0134b2d8" target="_blank" rel="noopener">기업 건강가치 평가 LLM 자동화 검증</a></h3>
+        <p class="desc">기업 건강가치 평가도구(CATCH·HFAI)를 LLM으로 자동화한 PoC에서, 10개 기업의 평가 결과를 문항·원문 단위로 검수했습니다. 근거 오분류, 중복 인용, 계획을 성과로 보는 과대평가 같은 오류를 유형별로 정리해 근거 분류와 점수 상한 기준의 개선 의견을 냈습니다.</p>
+        <p class="meta"><span class="kind">기획·검증</span>건강문화사업단, 휴먼 스크리닝 담당</p>
+      </div>
+    </div>
+
+    <div class="row proj">
+      <div class="when">2025 – 2026</div>
+      <div>
+        <h3><a href="https://sugary-heat-080.notion.site/33d1399caa8e80659d91f19bb774695f" target="_blank" rel="noopener">인컨텍스트 LLM 헬스 에이전트 연구 제안</a></h3>
+        <p class="desc">유튜브·블로그에서 건강 정보를 보는 자리에서 내용의 근거 수준과 나에게 맞는지를 알려주는 에이전트를 제안했습니다. 공신력 있는 가이드라인으로 만든 소규모 RAG, 신뢰도와 한계를 함께 보여주는 화면, 조건 비교 실험까지 설계했습니다.</p>
+        <p class="meta"><span class="kind">리서치</span>개인 연구 제안서</p>
+      </div>
+    </div>
+
+    <div class="row proj">
+      <div class="when">2024 – 2025</div>
+      <div>
+        <h3><a href="https://sugary-heat-080.notion.site/3271399caa8e803ea203d2f277750c0f" target="_blank" rel="noopener">P. capsici 전사체(RNA-Seq) 분석</a></h3>
+        <p class="desc">식물 병원균 RNA-Seq 데이터의 품질 검사, 매핑, 발현량 계산을 반복 실행 가능한 파이프라인으로 정리하고 차등발현 분석과 시각화까지 맡았습니다.</p>
+        <p class="meta"><span class="kind">데이터</span>원예작물 유전체학 연구실, Python·Perl·R</p>
+      </div>
+    </div>
+
+    <div class="row proj">
+      <div class="when">2024</div>
+      <div>
+        <h3><a href="https://sugary-heat-080.notion.site/3271399caa8e80f5b31fdceca84e6a31" target="_blank" rel="noopener">Knew Money, 대학생 금융관리 앱</a></h3>
+        <p class="desc">대학생이 금융 목표를 세우고 지출을 기록하며 돈 관리를 익히는 앱을 기획했습니다. 4명 인터뷰로 요구사항을 정의하고, Axure 프로토타입으로 5명과 사용성 테스트를 해 화면 흐름과 금융 용어를 고쳤습니다. 대학 제휴 기반 수익모델도 제안했습니다.</p>
+        <p class="meta"><span class="kind">기획·UX</span>University of Twente 팀 프로젝트, 영어 진행</p>
+      </div>
+    </div>
+
+    <div class="row proj">
+      <div class="when">2023</div>
+      <div>
+        <h3><a href="https://sugary-heat-080.notion.site/9e91399caa8e821984208125beb9be3d" target="_blank" rel="noopener">MediQ, 진료 보조 서비스</a></h3>
+        <p class="desc">의료 마이데이터를 모은다는 전제로 진료 전·중·후를 잇는 LLM 서비스를 기획했습니다. 단계별 기능과 화면 흐름을 설계하고, LLM이 답할 수 있는 범위와 프롬프트를 정해 출력을 검토했습니다.</p>
+        <p class="meta"><span class="kind">기획·UX</span>정보문화학 졸업 프로젝트</p>
+      </div>
+    </div>
+
+    <div class="row proj">
+      <div class="when">2023</div>
+      <div>
+        <h3><a href="https://sugary-heat-080.notion.site/4f21399caa8e82d08f2d01997831bc85" target="_blank" rel="noopener">데이터 활용 UX 디자인</a></h3>
+        <p class="desc">공공자전거 이용 데이터를 정리·시각화해 불편이 반복되는 지점을 찾고, 페르소나와 저니맵으로 대여 전부터 반납 후까지의 개선 방향을 제안했습니다. 이상 기후 데이터 시각화와 자기 추적 앱 기획 과제도 함께 했습니다.</p>
+        <p class="meta"><span class="kind">데이터·UX</span>개인 과제</p>
+      </div>
+    </div>
+
+    <div class="row proj">
+      <div class="when">2023</div>
+      <div>
+        <h3><a href="https://sugary-heat-080.notion.site/3271399caa8e80858b24df6d446d2688" target="_blank" rel="noopener">INFOME, 뉴스 추천 서비스</a></h3>
+        <p class="desc">크롤링한 뉴스 데이터에서 검색어와 연관 검색어로 기사를 순서대로 추천하고, 요약·번역과 일러스트 생성을 붙인 서비스입니다. 기획부터 데이터 수집, 추천 로직, 기능 구현, 발표까지 전 과정을 맡았습니다.</p>
+        <p class="meta"><span class="kind">개발</span>2인 팀 프로젝트, Python</p>
+      </div>
+    </div>
+
+    <div class="row proj">
+      <div class="when">2023</div>
+      <div>
+        <h3><a href="https://sugary-heat-080.notion.site/3271399caa8e80e295c5c9fe8d95491d" target="_blank" rel="noopener">서울대 나락퀴즈쇼</a></h3>
+        <p class="desc">p5.js로 만든 웹 퀴즈 게임입니다. 기획과 디자인, 개발을 함께 맡았고 지금도 브라우저에서 플레이할 수 있습니다.</p>
+        <p class="meta"><span class="kind">개발</span>팀 프로젝트, p5.js·Python</p>
+      </div>
+    </div>
+
+    <div class="row proj">
+      <div class="when">2022</div>
+      <div>
+        <h3><a href="https://sugary-heat-080.notion.site/1a41399caa8e82fb8047012105918930" target="_blank" rel="noopener">숏폼 시청자의 멘탈 모델 연구</a></h3>
+        <p class="desc">유튜브 쇼츠 추천을 사용자가 얼마나 예측할 수 있다고 느끼는지가 시청 경험에 주는 영향을 살폈습니다. 연구 설계, 데이터셋 구축, 인터뷰와 사용성 테스트, 정성 코딩을 거쳐 멘탈 모델을 정리했습니다.</p>
+        <p class="meta"><span class="kind">리서치</span>HCI 수업 팀 연구</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="basics">
+    <h2 id="basics">학력과 역량</h2>
+    <div class="basics">
+      <div>
+        <h3>학력</h3>
+        <ul>
+          <li>서울대학교 원예생명공학 (농학사)<span class="dim">2019.03 – 2025.08, 국가이공계우수장학금</span></li>
+          <li>서울대학교 정보문화학 연합전공 (문학사)<span class="dim">언론정보학·컴퓨터공학·디자인 연합, HCI·UX</span></li>
+          <li>서울대학교 혁신융합대학(COSS)<span class="dim">빅데이터 분야 컴퓨테이셔널 디자인 마이크로디그리</span></li>
+          <li>University of Twente 교환학기<span class="dim">2024.02 – 2024.07, Communication Science</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>할 수 있는 일</h3>
+        <ul>
+          <li>데이터<span class="dim">SQL(PostgreSQL), Python, R, 지표 정의와 정합성 검증</span></li>
+          <li>리서치·기획<span class="dim">인터뷰, 설문, 사용성 테스트, 요구사항 정의, VOC 분석</span></li>
+          <li>AI 활용<span class="dim">LLM 프롬프트 설계, LLM 산출물 검수</span></li>
+          <li>도구<span class="dim">Figma, Axure, p5.js</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>언어와 활동</h3>
+        <ul>
+          <li>영어<span class="dim">OPIc AL, 영어로 팀 프로젝트 수행</span></li>
+          <li>중국어·독일어<span class="dim">기초</span></li>
+          <li>SNU Buddy<span class="dim">2025.02 – 2025.06, 교환학생 약 33명 정착 지원</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>이소현</span>
+    <span><a href="mailto:isso213@snu.ac.kr">isso213@snu.ac.kr</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
